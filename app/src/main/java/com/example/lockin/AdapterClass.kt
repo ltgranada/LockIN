@@ -14,6 +14,7 @@ class AdapterClass(var dataList : ArrayList<DataClass>) : RecyclerView.Adapter<A
     class ViewHolderClass(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var rvImage: ImageView = itemView.findViewById(R.id.recyclerImage)
         var rvTitle: TextView = itemView.findViewById(R.id.recyclerTitle)
+        var emTitle: TextView = itemView.findViewById(R.id.recyclerEmail)
 
     }
 
@@ -26,6 +27,7 @@ class AdapterClass(var dataList : ArrayList<DataClass>) : RecyclerView.Adapter<A
         var currentItems = dataList[position]
         holder.rvImage.setImageResource(currentItems.dataImage)
         holder.rvTitle.text = currentItems.dataTitle
+        holder.emTitle.text = currentItems.dataEmail
     }
 
 

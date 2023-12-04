@@ -10,33 +10,45 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="81dp">
 
         <ImageView
+            android:id="@+id/recyclerImage"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:id="@+id/recyclerImage"
-            android:src="@drawable/ic_launcher_background"
             android:layout_marginStart="20dp"
-            android:padding="8dp"
             android:adjustViewBounds="true"
+            android:padding="8dp"
             android:scaleType="fitXY"
-            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_launcher_background"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/recyclerTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerTitle"
+            android:layout_marginStart="20dp"
             android:text="Default"
             android:textSize="16sp"
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toEndOf="@+id/recyclerImage"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/recyclerImage"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintVertical_bias="0.271" />
+
+        <TextView
+            android:id="@+id/recyclerEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Default"
+            android:textColor="@color/colorEmail"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/recyclerImage"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerTitle"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

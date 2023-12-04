@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorEmail">#808080</color>
 
     <color name="colorBackground">#E6E6FF</color>
     <color name="colorAccent">#7D3C98</color>

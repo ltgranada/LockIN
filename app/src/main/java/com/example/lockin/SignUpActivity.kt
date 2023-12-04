@@ -7,44 +7,55 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import com.google.firebase.Firebase
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+//import com.example.lockin.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
+    lateinit var databaseReference: DatabaseReference
+    //  private lateinit var fAuth : FirebaseAuth
 
-    lateinit var editTextFName: EditText
-    lateinit var editTextLName: EditText
-    lateinit var editTextEmail: EditText
-    lateinit var editTextUName: EditText
-    lateinit var editTextPass: EditText
-    lateinit var buttonReg: Button
-    lateinit var buttonback: Button
+    var editTextFName: EditText = findViewById(R.id.et_Firstname)
+    var editTextLName: EditText = findViewById(R.id.et_Lastname)
+    var editTextEmail: EditText = findViewById(R.id.et_Email)
+    var editTextUName: EditText = findViewById(R.id.et_username)
+    var editTextPass: EditText = findViewById(R.id.et_password)
+    var buttonReg: Button = findViewById(R.id.btn_submit)
+    var buttonback: Button = findViewById(R.id.btn_back)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        // Initialize Firebase Auth
-        auth = Firebase.auth
+        buttonReg.setOnClickListener {
 
-        editTextFName = findViewById(R.id.et_Firstname)
-        editTextLName = findViewById(R.id.et_Lastname)
-        editTextEmail = findViewById(R.id.et_Email)
-        editTextUName = findViewById(R.id.et_username)
-        editTextPass = findViewById(R.id.et_password)
-        buttonReg = findViewById(R.id.btn_submit)
-        buttonback = findViewById(R.id.btn_back)
+            if (validateForm()) {
+                val firstname = editTextFName.text.toString()
+                val lastname = editTextLName.text.toString()
+                val email = editTextEmail.text.toString()
+                val username = editTextUName.text.toString()
+                val password = editTextPass.text.toString()
 
-        buttonReg.setOnClickListener(){
-            if(validateForm()) {
-                performSignUp()
+                databaseReference = FirebaseDatabase.getInstance().getReference("Accounts")
+                var dataKey = databaseReference.push().getKey()
+                var userDetails = UserDetails(firstname, lastname, email, username, password)
+                databaseReference.child("UserDetails").child(dataKey.toString())
+                    .setValue(userDetails).addOnSuccessListener {
+                        Toast.makeText(this, "Success - ADD", Toast.LENGTH_SHORT).show()
+                    }
             }
+
+
         }
+
+
         buttonback.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -94,69 +105,7 @@ class SignUpActivity : AppCompatActivity() {
             editTextPass.error = null
         }
 
-        if(editTextFName.text.toString().isNotEmpty() &&
-            editTextLName.text.toString().isNotEmpty() &&
-            editTextEmail.text.toString().isNotEmpty() &&
-            editTextUName.text.toString().isNotEmpty() &&
-            editTextPass.text.toString().isNotEmpty())
-        {
-            if(isEmailValid()){
-                if(editTextPass.text.toString().length>=8){
-                    return valid
-                }
-            }else{
-                editTextPass.error = "Password must be at least 8 characters"
-            }
-        }else{
-            editTextEmail.error = "Please Enter Valid Email ID"
-        }
-
         return valid
-    }
-
-    private fun isEmailValid(): Boolean {
-        val email = editTextEmail.text.toString()
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    private fun performSignUp() {
-
-        val inemail = findViewById<EditText>(R.id.et_Email)
-        val inpassword = findViewById<EditText>(R.id.et_password)
-
-        if (inemail.text.isEmpty() || inpassword.text.isEmpty()){
-            Toast.makeText(this, "Pls fill all fields", Toast.LENGTH_SHORT)
-                .show()
-            return
-        }
-
-        val email = inemail.text.toString().trim()
-        val password = inpassword.text.toString().trim()
-
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-            if (task.isSuccessful) {
-                // Sign in success, update UI with the signed-in user's information
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-
-                Toast.makeText(
-                    baseContext, "Register Success",
-                    Toast.LENGTH_SHORT,)
-                    .show()
-
-            } else {
-                // If sign in fails, display a message to the user.
-
-                Toast.makeText(
-                    baseContext, "Register Fail",
-                    Toast.LENGTH_SHORT,)
-                    .show()
-            }
-        }
-            .addOnFailureListener{
-                Toast.makeText(this, "Error occurred ${it.localizedMessage}", Toast.LENGTH_SHORT)
-                    .show()
-            }
     }
 
 }

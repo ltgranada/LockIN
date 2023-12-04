@@ -14,20 +14,12 @@
         android:theme="@style/Theme.LockIN"
         tools:targetApi="31">
         <activity
-            android:name=".PassActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ForgotActivity"
-            android:exported="false" />
-        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".DashboardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NewPassword"
-            android:exported="false" />
+            android:exported="false">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -7,58 +7,123 @@
     android:background="@drawable/gradient"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="399dp"
-        android:layout_height="522dp"
-        android:layout_marginTop="68dp"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="413dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/signout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            app:srcCompat="@drawable/signout" />
+
+        <ImageView
+            android:id="@+id/Logo"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            app:srcCompat="@drawable/lockin_logo__1_" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="355dp"
+        android:layout_height="166dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.0">
 
-    <ImageView
-        android:id="@+id/Logo"
-        android:layout_width="168dp"
-        android:layout_height="59dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/searchView2"
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            app:srcCompat="@drawable/baseline_account_circle_24" />
+
+        <TextView
+            android:id="@+id/welcome_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:textSize="20dp"
+            android:text="Welcome back!" />
+
+        <TextView
+            android:id="@+id/welcome_id2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="Default"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="389dp"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.828"
-        app:srcCompat="@drawable/lockin_logo__1_" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-    <SearchView
-        android:id="@+id/searchView2"
-        android:layout_width="328dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
+        <SearchView
+            android:id="@+id/searchView2"
+            android:layout_width="283dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="21dp"
+            />
+
+        <ImageView
+            android:id="@+id/add"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="5dp"
+            app:srcCompat="@drawable/add" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="399dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="69dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toStartOf="@+id/Logo"
-        app:layout_constraintHorizontal_bias="0.307"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/signout" />
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/add"
-        android:layout_width="64dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.724"
-        app:layout_constraintStart_toEndOf="@+id/Logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/add" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="6dp" />
+        </ScrollView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
